@@ -52,6 +52,19 @@ systemctl list-timers wake-claude*                  # Next fire times
 sudo systemctl start wake-claude.service            # Manual test
 ```
 
+## Deployment Status
+
+- **Deployed**: 2026-02-22. All phases (A, B, C) complete.
+- **GitHub repo**: https://github.com/Liamshan/wake-claude
+- **Pi status**: Both timers active, Claude Code authenticated, headless mode verified.
+- **@claude GitHub Action**: Working (required `id-token: write` permission — added in second commit).
+
+## Setup Lessons Learned
+
+- `install.sh` ran successfully but the npm global PATH wasn't picked up until manually running `source ~/.bashrc`. On fresh installs, may need to reload the shell.
+- The `claude-code-action` requires `id-token: write` in workflow permissions for OIDC authentication — not documented in PLAN.md originally.
+- `DISABLE_AUTOUPDATER=1` is only needed during automated systemd runs (already set in the service unit). Interactive `claude` sessions on the Pi can auto-update normally.
+
 ## Implementation Reference
 
 See `PLAN.md` for complete file specifications, install procedure, rationale for all technical decisions, and known risks with mitigations.
