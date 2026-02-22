@@ -1,0 +1,18 @@
+[Unit]
+Description=Wake Claude Code - daily token window trigger
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=pi
+Group=pi
+WorkingDirectory=/home/pi/wake-claude
+ExecStart=/usr/bin/python3 /home/pi/wake-claude/wake_claude.py
+TimeoutStartSec=60
+Environment=HOME=/home/pi
+Environment=PATH=/home/pi/.npm-global/bin:/home/pi/.local/bin:/usr/local/bin:/usr/bin:/bin
+Environment=DISABLE_AUTOUPDATER=1
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=wake-claude

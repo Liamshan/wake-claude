@@ -1,0 +1,17 @@
+[Unit]
+Description=Git pull wake-claude repo for config updates
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=pi
+Group=pi
+WorkingDirectory=/home/pi/wake-claude
+ExecStart=/usr/bin/git pull --ff-only origin main
+ExecStartPost=/bin/bash -c '/home/pi/wake-claude/install.sh --update-timer-only'
+TimeoutStartSec=30
+Environment=HOME=/home/pi
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=wake-claude-update

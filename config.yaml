@@ -1,0 +1,12 @@
+# Wake-Claude Configuration
+# ─────────────────────────
+# This file controls when and how the daily Claude wake prompt fires.
+# To change the schedule, edit wake_time and push to GitHub.
+# Changes take effect after the 5:00 AM git pull on the Pi.
+
+wake_time: "06:00"          # 24-hour format, local time
+timezone: "America/Chicago" # IANA timezone (Pi's local time)
+prompt: "Good morning. This is an automated wake ping to start my token window."
+max_turns: 1                # Keep minimal - one turn, no tool use
+timeout_seconds: 30         # Kill claude process if it hangs
+log_level: "INFO"           # DEBUG, INFO, WARNING, ERROR
